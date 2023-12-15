@@ -9,13 +9,14 @@ interface Iprops
 }
 
 const buttonVariants = cva(
-  ["rounded-md text-base py-3 my-3 mx-auto text-white px-2"],
+  [
+    "rounded-md text-base py-3 my-3 w-full  text-white px-2 font-semibold w-[70%]",
+  ],
   {
     variants: {
       variant: {
         default: "bg-gradient-to-r from-cyan-500 to-blue-500",
-        solid:
-          "bg-gradient-to-r from-indigo-500 via-sky-500 via-30% to-emerald-500 to-90% to-green-500",
+        solid: "bg-gradient-to-r from-orange-500  to-yellow-500 ",
       },
     },
     defaultVariants: {
@@ -24,9 +25,9 @@ const buttonVariants = cva(
   }
 );
 
-function Button({ children, variant, ...rest }: Iprops) {
+function Button({ children, className, variant, ...rest }: Iprops) {
   return (
-    <button className={cn(buttonVariants({ variant }))} {...rest}>
+    <button className={cn(buttonVariants({ variant }), className)} {...rest}>
       {children}
     </button>
   );

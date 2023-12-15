@@ -7,5 +7,10 @@ export default {
   theme: {
     extend: {},
   },
+  variants: {
+  // ...
+  even: true,
+  odd: true,
+},
   plugins: [],
 }

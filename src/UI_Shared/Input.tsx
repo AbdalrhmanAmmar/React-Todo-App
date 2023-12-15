@@ -1,32 +1,29 @@
 import { cn } from "../Libs/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
-import { InputHTMLAttributes, ReactNode } from "react";
+import { InputHTMLAttributes } from "react";
 
 interface Iprops
   extends InputHTMLAttributes<HTMLInputElement>,
-    VariantProps<typeof InputVariants> {
-  children: ReactNode;
-}
+    VariantProps<typeof InputVariants> {}
 
-const InputVariants = cva(
-  ["rounded-md text-base py-3 my-3 mx-auto text-white px-2"],
-  {
-    variants: {
-      variant: {
-        default: "bg-gradient-to-r from-cyan-500 to-blue-500",
-        solid:
-          "bg-gradient-to-r from-indigo-500 via-sky-500 via-30% to-emerald-500 to-90% to-green-500",
-      },
+const InputVariants = cva(["w-full xl:px-5  text-center  py-2 rounded-lg"], {
+  variants: {
+    variant: {
+      default: "border-2 border-black",
+      solid:
+        "bg-gradient-to-r from-indigo-500 via-sky-500 via-30% to-emerald-500 to-90% to-green-500",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
-function Input({  variant, ...rest }: Iprops) {
-  return <input className={cn(InputVariants({ variant }))} {...rest} />;
+function Input({ variant, className, ...rest }: Iprops) {
+  return (
+    <input className={cn(InputVariants({ variant }), className)} {...rest} />
+  );
 }
 
 export default Input;
