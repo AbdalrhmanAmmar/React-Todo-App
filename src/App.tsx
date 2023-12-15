@@ -8,7 +8,7 @@ function App() {
         <TodoApp />
       </div>
 
-      <div className="flex flex-col col-span-12 bg-white xl:col-span-8  md:col-span-12 rounded-2xl Appbar  xl:order-1">
+      <div className="flex flex-col col-span-12 bg-white xl:col-span-8  md:col-span-12 rounded-2xl   xl:order-1">
         <TodoData />
       </div>
     </div>
