@@ -4,6 +4,7 @@ import Input from "../UI_Shared/Input";
 import Label from "../UI_Shared/Label";
 import TaskInformations from "../Lists/TaskInformation";
 import { ITask } from "../Interfaces";
+import Text from "../UI_Shared/Text";
 
 function TodoApp() {
   const [Task, setTask] = useState<ITask>({
@@ -12,14 +13,7 @@ function TodoApp() {
     Time: "",
   });
 
-
-  //Error message 
-  const [Error, setError] = useState<ITask>({
-    YourTask: "",
-    Date: "",
-    Time: "",
-  });
-  console.log(Task);
+  //Error message
 
   const OnTaskSubmit = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({
@@ -45,20 +39,23 @@ function TodoApp() {
             className="flex justify-center items-center cursor-pointer bold"
             Text={input.name}
             htmlFor={input.id}
-          >
-           
-          </Label>
-          <div className="flex justify-center items-center">
+          ></Label>
+          <div className="flex justify-center items-center flex-col">
             <Input
               type={input.type}
               name={input.name}
               value={Task[input.name]}
               onChange={OnTaskSubmit}
             />
+            <span className="">hello</span>
           </div>
         </Fragment>
       ))}
-      <Button type="submit" onClick={OnTaskSubmit}>
+      <Button
+        className="my-4"
+        type="submit"
+        onClick={() => console.log("python")}
+      >
         Add task
       </Button>
     </div>

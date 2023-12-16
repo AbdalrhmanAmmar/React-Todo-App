@@ -9,7 +9,7 @@ function App() {
       </div>
 
       <div className="flex flex-col col-span-12 bg-white xl:col-span-8  md:col-span-12 rounded-2xl   xl:order-1 xl: ">
-        <TodoData />
+        <TodoData TodoList={[]} />
       </div>
     </div>
   );

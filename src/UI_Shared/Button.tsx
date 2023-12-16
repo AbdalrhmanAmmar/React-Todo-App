@@ -27,7 +27,11 @@ const buttonVariants = cva(
 
 function Button({ children, className, variant, ...rest }: Iprops) {
   return (
-    <button className={cn(buttonVariants({ variant }), className)} {...rest}>
+    <button
+      className={cn(buttonVariants({ variant }), className)}
+      {...rest}
+    
+    >
       {children}
     </button>
   );

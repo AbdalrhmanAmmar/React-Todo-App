@@ -1,5 +1,5 @@
 export interface ITask {
-  YourTask: string;
+  YourTask: string ;
   Date: string;
   Time: string;
 }

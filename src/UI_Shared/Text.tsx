@@ -1,14 +1,16 @@
-import { Component, ReactNode } from "react";
+import { ReactNode } from "react";
 import { cn } from "../Libs/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 
-interface Iprops {
+interface Iprops extends VariantProps<typeof TextVariants> {
   children: ReactNode;
-  as: string;
+  as: keyof JSX.IntrinsicElements; 
 }
 
 const TextVariants = cva(
-  ["rounded-md text-base py-3 my-3 w-full text-white px-2"],
+  [
+    "font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500",
+  ],
   {
     variants: {
       variant: {
@@ -23,11 +25,11 @@ const TextVariants = cva(
   }
 );
 
-function Text({ children, variant, as }: Iprops) {
+function Text({ children, variant, as: Component }: Iprops) {
   return (
-    <div as={Component} className={cn(TextVariants({ variant }))}>
+    <Component as={Component} className={cn(TextVariants({ variant }))}>
       {children}
-    </div>
+    </Component>
   );
 }
 
