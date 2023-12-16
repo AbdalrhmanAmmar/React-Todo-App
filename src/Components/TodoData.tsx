@@ -4,12 +4,12 @@ function TodoData() {
   const X = true;
   return (
     <div className="bg-white my-5 w-[90%] mx-auto text-center  xl:w-[100%] md:w-[80%] rounded-md py-5 h-[full] ">
-      <h3 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500 my-2">
+      <h3 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-blue-500 to-sky-500 my-2">
         Your Task
       </h3>
       {X ? (
         <h3 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 my-2">
-          You dont have task yet
+          You dont have task yet.
         </h3>
       ) : (
         <div>

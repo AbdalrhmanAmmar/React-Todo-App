@@ -5,10 +5,16 @@ import Label from "../UI_Shared/Label";
 import TaskInformations from "../Lists/TaskInformation";
 import { ITask } from "../Interfaces";
 
-
-
 function TodoApp() {
   const [Task, setTask] = useState<ITask>({
+    YourTask: "",
+    Date: "",
+    Time: "",
+  });
+
+
+  //Error message 
+  const [Error, setError] = useState<ITask>({
     YourTask: "",
     Date: "",
     Time: "",
@@ -20,7 +26,7 @@ function TodoApp() {
       ...Task,
       [event.target.name]: event.target.value,
     });
-    
+
     console.log(Task);
   };
 
@@ -39,7 +45,9 @@ function TodoApp() {
             className="flex justify-center items-center cursor-pointer bold"
             Text={input.name}
             htmlFor={input.id}
-          ></Label>
+          >
+           
+          </Label>
           <div className="flex justify-center items-center">
             <Input
               type={input.type}
