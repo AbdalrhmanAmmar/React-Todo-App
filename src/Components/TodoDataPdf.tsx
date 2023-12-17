@@ -1,10 +1,9 @@
-import React from "react";
 import { Document, Page, Text, StyleSheet, View } from "@react-pdf/renderer";
+import { ITask } from "../Interfaces";
 
 interface Iprops {
-  hello: string;
+  TodoList: ITask[];
 }
-
 // Create styles
 const styles = StyleSheet.create({
   body: {
@@ -47,22 +46,35 @@ const styles = StyleSheet.create({
 });
 
 // Create Document Component
-export const MyDocument = ({ hello }: Iprops) => (
-  <Document>
-    <Page style={styles.body}>
-      <Text style={styles.title}>Your Task</Text>
-      <View style={styles.container}>
-        <Text style={styles.listItem}>Tasks</Text>
-        <Text style={styles.listItem}>Date</Text>
-        <Text style={styles.listItem}>Time</Text>
-        <Text style={styles.listItem}>Option</Text>
-      </View>
-      <View style={styles.container}>
-        <Text style={styles.listItem}>Tasks</Text>
-        <Text style={styles.listItem}>Date</Text>
-        <Text style={styles.listItem}>Time</Text>
-        <Text style={styles.listItem}>{hello}</Text>
-      </View>
-    </Page>
-  </Document>
-);
+function MyDocument({ TodoList }: Iprops) {
+  const tasks = TodoList;
+
+  console.log(TodoList);
+  // No return statement needed anymore
+  return (
+    <Document>
+      <Page style={styles.body}>
+        <button>hello</button>
+
+        <Text style={styles.title}>Your Tasks</Text>
+        <View style={styles.container}>
+          <Text style={styles.listItem}>Task</Text>
+          <Text style={styles.listItem}>Date</Text>
+          <Text style={styles.listItem}>Time</Text>
+          <Text style={styles.listItem}>Option</Text>
+        </View>
+        {tasks.map((task) => (
+          <View style={styles.container}>
+            {" "}
+            // Added key for better performance
+            <Text style={styles.listItem}>{task.YourTask}</Text>
+            <Text style={styles.listItem}>{task.Date}</Text>
+            <Text style={styles.listItem}>{task.Time}</Text>
+            <Text style={styles.listItem}></Text>
+          </View>
+        ))}
+      </Page>
+    </Document>
+  );
+}
+export default MyDocument;
