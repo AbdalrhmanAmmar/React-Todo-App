@@ -26,8 +26,6 @@ function TodoData({ TodoList, setTodoList }: Iprops) {
   }>({});
   //edit Task
 
-  
-
   const TaskOnDone = (id: string) => {
     setCompletedTasks((prev) => ({
       ...prev,
@@ -101,7 +99,7 @@ function TodoData({ TodoList, setTodoList }: Iprops) {
               </div>
             </>
             <PDFDownloadLink
-              document={<MyDocument TodoList={TodoList} fi />}
+              document={<MyDocument TodoList={TodoList} />}
               fileName="hello"
             >
               <Button
