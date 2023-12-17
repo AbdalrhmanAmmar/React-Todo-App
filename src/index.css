@@ -14,3 +14,10 @@ body {
 }
 
 /* even and odd */
+.TodoListStyle ul:nth-child(even) {
+  background: linear-gradient(to right, #00b8d4, #29b6f6);
+  
+}
+.TodoListStyle ul:nth-child(odd) {
+  background: rgba(255, 255, 0, 0.278);
+}
