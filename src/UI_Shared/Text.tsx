@@ -4,26 +4,22 @@ import { cva, type VariantProps } from "class-variance-authority";
 
 interface Iprops extends VariantProps<typeof TextVariants> {
   children: ReactNode;
-  as: keyof JSX.IntrinsicElements; 
+  as: keyof JSX.IntrinsicElements;
 }
 
-const TextVariants = cva(
-  [
-    "font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500",
-  ],
-  {
-    variants: {
-      variant: {
-        default: "bg-gradient-to-r from-cyan-500 to-blue-500",
-        solid:
-          "bg-gradient-to-r from-indigo-500 via-sky-500 via-30% to-emerald-500 to-90% to-green-500",
-      },
+const TextVariants = cva([""], {
+  variants: {
+    variant: {
+      default:
+        "font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500",
+      solid:
+        "font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-orange-500 to-yellow-500 my-2",
     },
-    defaultVariants: {
-      variant: "default",
-    },
-  }
-);
+  },
+  defaultVariants: {
+    variant: "default",
+  },
+});
 
 function Text({ children, variant, as: Component }: Iprops) {
   return (

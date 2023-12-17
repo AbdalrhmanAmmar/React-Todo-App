@@ -1,16 +1,20 @@
+import { ITask } from "../Interfaces";
 import Button from "../UI_Shared/Button";
+import Text from "../UI_Shared/Text";
 
-function TodoData() {
-  const X = true;
+interface Iprops {
+  TodoList:ITask[]
+}
+
+function TodoData({ TodoList }: Iprops) {
+  const X = false;
   return (
     <div className="bg-white my-5 w-[100%] mx-auto text-center  xl:w-[100%] md:w-[80%] rounded-md py-5 h-[full] ">
-      <h3 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-blue-500 to-sky-500 my-2">
-        Your Task
-      </h3>
-      {!X ? (
-        <h3 className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-orange-500 to-red-500 my-2">
+      <Text as="h3">Your Task</Text>
+      {X ? (
+        <Text as="h3" variant={"solid"}>
           You dont have task yet
-        </h3>
+        </Text>
       ) : (
         <>
           <div>
@@ -24,7 +28,7 @@ function TodoData() {
               <li>Option</li>
             </ul>
 
-            <Button variant={"solid"} className="rounded-full font-semibold">
+            <Button  variant={"solid"} className="rounded-full font-semibold w-[50%]">
               Download
             </Button>
           </div>
