@@ -61,7 +61,7 @@ function MyDocument({ TodoList }: Iprops) {
           <Text style={styles.listItem}>Task</Text>
           <Text style={styles.listItem}>Date</Text>
           <Text style={styles.listItem}>Time</Text>
-          <Text style={styles.listItem}>Option</Text>
+          <Text style={styles.listItem}>Notes</Text>
         </View>
         {tasks.map((task) => (
           <View style={styles.container}>

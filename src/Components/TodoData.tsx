@@ -10,10 +10,30 @@ import { useState } from "react";
 
 interface Iprops {
   TodoList: ITask[];
+  setTodoList: (TodoList: ITask[]) => void;
 }
 
-function TodoData({ TodoList }: Iprops) {
-  const [isDone, setIsDone] = useState(false);
+function TodoData({ TodoList, setTodoList }: Iprops) {
+  //Delete Done
+  const RemoveTask = (id: string) => {
+    console.log(id);
+    const FilterTask = TodoList.filter((task) => task.id !== id);
+    setTodoList(FilterTask);
+  };
+  //Done
+  const [completedTasks, setCompletedTasks] = useState<{
+    [key: string]: boolean;
+  }>({});
+  //edit Task
+
+  
+
+  const TaskOnDone = (id: string) => {
+    setCompletedTasks((prev) => ({
+      ...prev,
+      [id]: true,
+    }));
+  };
 
   return (
     <div className="bg-white my-5 w-[100%] mx-auto text-center  xl:w-[100%] md:w-[80%] rounded-md py-5 h-[full] ">
@@ -32,14 +52,14 @@ function TodoData({ TodoList }: Iprops) {
             </ul>
             <>
               <div className="TodoListStyle w-full">
-                {TodoList.map((Tasks, idx) => {
+                {TodoList.map((Tasks) => {
                   return (
                     <ul
-                      key={idx}
+                      key={Tasks.id}
                       className={
-                        isDone
-                          ? "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full opacity-10 "
-                          : "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full"
+                        completedTasks[Tasks.id]
+                          ? "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full CompletedTasks before-line "
+                          : "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full "
                       }
                     >
                       <li>{Tasks.YourTask}</li>
@@ -47,19 +67,30 @@ function TodoData({ TodoList }: Iprops) {
                       <li>{Tasks.Time}</li>
                       <li className=" flex flex-row text-center gap-2 ">
                         <span
-                          className="text-3xl cursor-pointer "
-                          onClick={(handleClick) => {}}
+                          className={
+                            completedTasks[Tasks.id]
+                              ? "text-3xl cursor-not-allowed"
+                              : "text-3xl cursor-pointer"
+                          }
+                          onClick={() => TaskOnDone(Tasks.id)}
                         >
                           <IoCheckmarkDoneCircle />
                         </span>
-                        <span className="text-3xl cursor-pointer">
+                        <span
+                          className={
+                            completedTasks[Tasks.id]
+                              ? "text-3xl cursor-not-allowed"
+                              : "text-3xl cursor-pointer"
+                          }
+                        >
                           <CiEdit />
                         </span>
                         <span
-                          className="text-3xl cursor-pointer"
-                          onClick={() => {
+                          className={"text-3xl cursor-pointer"}
+                          onClick={
+                            () => RemoveTask(Tasks.id)
                             //
-                          }}
+                          }
                         >
                           <IoIosCloseCircle />
                         </span>
@@ -70,7 +101,7 @@ function TodoData({ TodoList }: Iprops) {
               </div>
             </>
             <PDFDownloadLink
-              document={<MyDocument TodoList={TodoList} />}
+              document={<MyDocument TodoList={TodoList} fi />}
               fileName="hello"
             >
               <Button

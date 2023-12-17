@@ -2,14 +2,13 @@ import { FormEvent, useState } from "react";
 import TodoApp from "./Components/TodoApp";
 import TodoData from "./Components/TodoData";
 import { ITask } from "./Interfaces";
-import MyDocument from "./Components/MyDocument";
-
-
+import { v4 as uuid } from "uuid";
 
 function App() {
   const [TodoList, setTodoList] = useState<ITask[]>([]);
 
   const [Task, setTask] = useState<ITask>({
+    id: "",
     YourTask: "",
     Date: "",
     Time: "",
@@ -19,7 +18,7 @@ function App() {
     event.preventDefault();
 
     // Store Task to TaskList
-    setTodoList([...TodoList, Task]);
+    setTodoList([...TodoList, { ...Task, id: uuid() }]);
   };
   console.log(TodoList);
 
@@ -30,9 +29,8 @@ function App() {
       </div>
 
       <div className="flex flex-col col-span-12 bg-white xl:col-span-8  md:col-span-12 rounded-2xl   xl:order-1 xl: ">
-        <TodoData TodoList={TodoList} />
+        <TodoData TodoList={TodoList} setTodoList={setTodoList} />
       </div>
-      
     </div>
   );
 }
