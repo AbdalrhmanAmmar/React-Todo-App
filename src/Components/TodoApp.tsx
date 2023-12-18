@@ -10,18 +10,11 @@ interface Iprops {
   setTask: (Task: ITask) => void;
   OnTaskSubmit: (event: FormEvent<HTMLFormElement>) => void;
   TypeButton: boolean;
+  updateTask: (event: FormEvent<HTMLFormElement>) => void;
 }
 
-function TodoApp({
-  Task,
-  setTask,
-  OnTaskSubmit,
-  TypeButton,
-  UpdateTask,
-}: Iprops) {
+function TodoApp({ Task, setTask, OnTaskSubmit }: Iprops) {
   //!SECTION
-
-
 
   //Go to App
 
@@ -41,7 +34,7 @@ function TodoApp({
   };
 
   return (
-    <div className="bg-white my-5 w-[90%] mx-auto text-center lg:w-[60%] md:w-[80%] rounded-md py-8 xl:w-[75%] ">
+    <div className="bg-white my-5 w-[90%] mx-auto  text-center lg:w-[60%] md:w-[80%] rounded-md py-8 xl:w-[75%] ">
       <h2 className="text-black font-semibold text-3xl">
         MY{" "}
         <span className="font-extrabold text-transparent text-3xl bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-500">
@@ -69,15 +62,9 @@ function TodoApp({
           </Fragment>
         ))}
 
-        {!TypeButton ? (
-          <Button className="my-4" type="submit">
-            Add task
-          </Button>
-        ) : (
-          <Button variant={"solid"} onClick={() => UpdateTask(Task.id)}>
-            Update
-          </Button>
-        )}
+        <Button className="my-4" type="submit">
+          Add task
+        </Button>
       </form>
     </div>
   );

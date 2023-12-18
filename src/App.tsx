@@ -7,7 +7,6 @@ import { v4 as uuid } from "uuid";
 function App() {
   const [TodoList, setTodoList] = useState<ITask[]>([]);
   //change button
-  const [TypeButton, setTypeButton] = useState<boolean>(false);
 
   const [Task, setTask] = useState<ITask>({
     id: "",
@@ -34,10 +33,7 @@ function App() {
   //Edit Task
   const [selectedTask, setSelectedTask] = useState<string | null>(null);
 
-  const UpdateTask = (id) => {
-    setTypeButton(false);
-    setSelectedTask(id);
-  };
+
 
   return (
     <div className="grid grid-cols-12 gap-6 px-5 xl:pr-40 my-14 sm:px-20 md:px-40px  flex-wrap-reverse border-none ">
@@ -46,8 +42,6 @@ function App() {
           Task={Task}
           setTask={setTask}
           OnTaskSubmit={OnTaskSubmit}
-          TypeButton={TypeButton}
-          UpdateTask={UpdateTask}
         />
       </div>
 
@@ -55,7 +49,6 @@ function App() {
         <TodoData
           TodoList={TodoList}
           setTodoList={setTodoList}
-          setTypeButton={setTypeButton}
         />
       </div>
     </div>

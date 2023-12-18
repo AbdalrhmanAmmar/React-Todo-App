@@ -15,7 +15,7 @@ interface Iprops {
   setTypeButton: boolean;
 }
 
-function TodoData({ TodoList, setTodoList, setTypeButton }: Iprops) {
+function TodoData({ TodoList, setTodoList }: Iprops) {
   //Delete Done
   const RemoveTask = (id: string) => {
     console.log(id);
@@ -64,15 +64,6 @@ function TodoData({ TodoList, setTodoList, setTypeButton }: Iprops) {
   // في المكان الذي تقوم فيه بتحديد أن المهمة قد تمت
   // قم بتعويض "taskId" بالمعرف الفعلي للمهمة
   //Update Task
-  const OnEditTask = (
-    YourTask: string,
-    Date: string,
-    Time: string,
-    id: string
-  ) => {
-    setTypeButton(true);
-    YourTask = { ...TodoList }.
-  };
 
   //edit Task
   return (
@@ -126,14 +117,6 @@ function TodoData({ TodoList, setTodoList, setTypeButton }: Iprops) {
                             completedTasks[Tasks.id]
                               ? "text-2xl cursor-not-allowed"
                               : "text-2xl cursor-pointer"
-                          }
-                          onClick={() =>
-                            OnEditTask(
-                              Tasks.YourTask,
-                              Tasks.Date,
-                              Tasks.Time,
-                              Tasks.id
-                            )
                           }
                         >
                           <CiEdit />
