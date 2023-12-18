@@ -12,7 +12,7 @@ import Confetti from "./Confetti/Confetti";
 interface Iprops {
   TodoList: ITask[];
   setTodoList: (TodoList: ITask[]) => void;
-  setTypeButton: boolean;
+  
 }
 
 function TodoData({ TodoList, setTodoList }: Iprops) {

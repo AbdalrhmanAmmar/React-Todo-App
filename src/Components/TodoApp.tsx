@@ -9,22 +9,11 @@ interface Iprops {
   Task: ITask;
   setTask: (Task: ITask) => void;
   OnTaskSubmit: (event: FormEvent<HTMLFormElement>) => void;
-  TypeButton: boolean;
-  updateTask: (event: FormEvent<HTMLFormElement>) => void;
+
 }
 
 function TodoApp({ Task, setTask, OnTaskSubmit }: Iprops) {
-  //!SECTION
 
-  //Go to App
-
-  // const [Task, setTask] = useState<ITask>({
-  //   YourTask: "",
-  //   Date: "",
-  //   Time: "",
-  // });
-
-  //Error message
 
   const OnTaskhandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({
