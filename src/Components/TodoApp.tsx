@@ -8,10 +8,21 @@ import { ITask } from "../Interfaces";
 interface Iprops {
   Task: ITask;
   setTask: (Task: ITask) => void;
-  OnTaskSubmit:(event: FormEvent<HTMLFormElement>) => void;
+  OnTaskSubmit: (event: FormEvent<HTMLFormElement>) => void;
+  TypeButton: boolean;
 }
 
-function TodoApp({ Task, setTask,OnTaskSubmit }: Iprops) {
+function TodoApp({
+  Task,
+  setTask,
+  OnTaskSubmit,
+  TypeButton,
+  UpdateTask,
+}: Iprops) {
+  //!SECTION
+
+
+
   //Go to App
 
   // const [Task, setTask] = useState<ITask>({
@@ -27,10 +38,7 @@ function TodoApp({ Task, setTask,OnTaskSubmit }: Iprops) {
       ...Task,
       [event.target.name]: event.target.value,
     });
-
   };
-
-
 
   return (
     <div className="bg-white my-5 w-[90%] mx-auto text-center lg:w-[60%] md:w-[80%] rounded-md py-8 xl:w-[75%] ">
@@ -55,12 +63,21 @@ function TodoApp({ Task, setTask,OnTaskSubmit }: Iprops) {
               name={input.name}
               value={Task[input.name]}
               onChange={OnTaskhandler}
+              maxLength={7}
+              minLength={3}
             />
           </Fragment>
         ))}
-        <Button className="my-4" type="submit">
-          Add task
-        </Button>
+
+        {!TypeButton ? (
+          <Button className="my-4" type="submit">
+            Add task
+          </Button>
+        ) : (
+          <Button variant={"solid"} onClick={() => UpdateTask(Task.id)}>
+            Update
+          </Button>
+        )}
       </form>
     </div>
   );
