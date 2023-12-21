@@ -8,7 +8,7 @@ interface Iprops
     VariantProps<typeof InputVariants> {}
 
 const InputVariants = cva(
-  ["w-full xl:px-5  text-center  py-2 rounded-lg font-semibold text-sky-500"],
+  ["w-full xl:px-5  text-center  py-2 rounded-lg font-semibold text-black"],
   {
     variants: {
       variant: {

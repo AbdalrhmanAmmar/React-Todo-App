@@ -17,6 +17,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-gradient-to-r from-cyan-500 to-blue-500",
         solid: "bg-gradient-to-r from-orange-500  to-yellow-500 ",
+        Cancel: "bg-gradient-to-r from-red-500  to-red-800 ",
       },
     },
     defaultVariants: {
@@ -27,11 +28,7 @@ const buttonVariants = cva(
 
 function Button({ children, className, variant, ...rest }: Iprops) {
   return (
-    <button
-      className={cn(buttonVariants({ variant }), className)}
-      {...rest}
-    
-    >
+    <button className={cn(buttonVariants({ variant }), className)} {...rest}>
       {children}
     </button>
   );

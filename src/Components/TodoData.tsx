@@ -12,10 +12,11 @@ import Confetti from "./Confetti/Confetti";
 interface Iprops {
   TodoList: ITask[];
   setTodoList: (TodoList: ITask[]) => void;
-  
+  setButtonType: (buttonType: boolean) => void;
+  setTask: (task: ITask) => void;
 }
 
-function TodoData({ TodoList, setTodoList }: Iprops) {
+function TodoData({ TodoList, setTodoList, setButtonType, setTask }: Iprops) {
   //Delete Done
   const RemoveTask = (id: string) => {
     console.log(id);
@@ -66,6 +67,12 @@ function TodoData({ TodoList, setTodoList }: Iprops) {
   //Update Task
 
   //edit Task
+
+  const OnEditHandler = (index:number) => {
+    setButtonType(true);
+    setTask(TodoList[index]);
+  };
+
   return (
     <div className="bg-white my-5 w-[100%] mx-auto text-center  xl:w-[100%] md:w-[80%] rounded-md py-5 h-[full] ">
       <Text as="h3">Your Task</Text>
@@ -88,7 +95,7 @@ function TodoData({ TodoList, setTodoList }: Iprops) {
             </ul>
             <>
               <div className="TodoListStyle w-full">
-                {TodoList.map((Tasks) => {
+                {TodoList.map((Tasks, index) => {
                   return (
                     <ul
                       key={Tasks.id}
@@ -118,6 +125,7 @@ function TodoData({ TodoList, setTodoList }: Iprops) {
                               ? "text-2xl cursor-not-allowed"
                               : "text-2xl cursor-pointer"
                           }
+                          onClick={() => OnEditHandler(index)}
                         >
                           <CiEdit />
                         </span>

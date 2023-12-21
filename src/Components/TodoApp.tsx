@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, Fragment } from "react";
+import { ChangeEvent, FormEvent, Fragment, MouseEventHandler } from "react";
 import Button from "../UI_Shared/Button";
 import Input from "../UI_Shared/Input";
 import Label from "../UI_Shared/Label";
@@ -9,12 +9,19 @@ interface Iprops {
   Task: ITask;
   setTask: (Task: ITask) => void;
   OnTaskSubmit: (event: FormEvent<HTMLFormElement>) => void;
-
+  ButtonType: boolean;
+  handleCancelEdit: MouseEventHandler<HTMLButtonElement>;
+  YourDateIsEdited: MouseEventHandler<HTMLButtonElement>;
 }
 
-function TodoApp({ Task, setTask, OnTaskSubmit }: Iprops) {
-
-
+function TodoApp({
+  Task,
+  setTask,
+  OnTaskSubmit,
+  ButtonType,
+  handleCancelEdit,
+  YourDateIsEdited,
+}: Iprops) {
   const OnTaskhandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({
       ...Task,
@@ -45,15 +52,36 @@ function TodoApp({ Task, setTask, OnTaskSubmit }: Iprops) {
               name={input.name}
               value={Task[input.name]}
               onChange={OnTaskhandler}
-              maxLength={7}
+              maxLength={70}
               minLength={3}
             />
           </Fragment>
         ))}
 
-        <Button className="my-4" type="submit">
-          Add task
-        </Button>
+        {!ButtonType ? (
+          <Button className="my-4" type="submit">
+            Add task
+          </Button>
+        ) : (
+          <div className="flex  gap-2">
+            <Button
+              variant={"default"}
+              className="my-4"
+              type="submit"
+              onClick={YourDateIsEdited}
+            >
+              Edit
+            </Button>
+            <Button
+              variant={"Cancel"}
+              className="my-4"
+              type="submit"
+              onClick={handleCancelEdit}
+            >
+              Cancel
+            </Button>
+          </div>
+        )}
       </form>
     </div>
   );

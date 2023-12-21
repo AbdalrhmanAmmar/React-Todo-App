@@ -18,22 +18,56 @@ function App() {
   const OnTaskSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Store Task to TaskList
-    if (selectedTask) {
-      setTodoList((prev) =>
-        prev.map((task) => (task.id === selectedTask ? Task : task))
-      );
+    if (selectedTask !== null && Task.YourTask.trim() !== "") {
+      // Edit existing task
+      const updatedTodoList = [...TodoList];
+      updatedTodoList[selectedTask] = {
+        ...Task,
+        id: TodoList[selectedTask].id,
+      };
+      setTodoList(updatedTodoList);
+      setTask({ id: "", YourTask: "", Date: "", Time: "" });
       setSelectedTask(null);
-    } else {
+    } else if (Task.YourTask.trim() !== "") {
+      // Add new task
       setTodoList([...TodoList, { ...Task, id: uuid() }]);
+      setTask({ id: "", YourTask: "", Date: "", Time: "" });
     }
-
-    setTask({ id: "", YourTask: "", Date: "", Time: "" });
   };
   //Edit Task
-  const [selectedTask, setSelectedTask] = useState<string | null>(null);
+  const [selectedTask, setSelectedTask] = useState<number | null>(null);
 
+  //Change button for Add to Edit
 
+  const [ButtonType, setButtonType] = useState<boolean>(false);
+
+  const handleCancelEdit = () => {
+    setTask({ id: "", YourTask: "", Date: "", Time: "" });
+    setSelectedTask(null);
+    setButtonType(false);
+  };
+
+  // const YourDateIsEdited = () => {
+  //   if (selectedTask !== null && Task.YourTask.trim() !== "") {
+  //     const newDataList = [...TodoList];
+  //     newDataList[selectedTask] = { ...Task, id: TodoList[selectedTask].id };
+  //     setTodoList(newDataList);
+  //     setTask({ id: "", YourTask: "", Date: "", Time: "" });
+  //     setSelectedTask(null);
+  //     setButtonType(false);
+  //   }
+  // };
+
+  const YourDateIsEdited = () => {
+    if (selectedTask !== null && Task.YourTask.trim() !== "") {
+      const newDataList = [...TodoList];
+      newDataList[selectedTask] = { ...Task, id: TodoList[selectedTask].id };
+      setTodoList(newDataList);
+      setTask({ id: "", YourTask: "", Date: "", Time: "" });
+      setSelectedTask(null);
+    }
+    setButtonType(false);
+  };
 
   return (
     <div className="grid grid-cols-12 gap-6 px-5 xl:pr-40 my-14 sm:px-20 md:px-40px  flex-wrap-reverse border-none ">
@@ -42,6 +76,9 @@ function App() {
           Task={Task}
           setTask={setTask}
           OnTaskSubmit={OnTaskSubmit}
+          ButtonType={ButtonType}
+          handleCancelEdit={handleCancelEdit}
+          YourDateIsEdited={YourDateIsEdited}
         />
       </div>
 
@@ -49,6 +86,8 @@ function App() {
         <TodoData
           TodoList={TodoList}
           setTodoList={setTodoList}
+          setButtonType={setButtonType}
+          setTask={setTask}
         />
       </div>
     </div>
