@@ -43,7 +43,6 @@ function App() {
 
   const handleCancelEdit = () => {
     setTask({ id: "", YourTask: "", Date: "", Time: "" });
-    setSelectedTask(null);
     setButtonType(false);
   };
 

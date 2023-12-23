@@ -6,7 +6,7 @@ import MyDocument from "./TodoDataPdf";
 import { IoIosCloseCircle } from "react-icons/io";
 import { CiEdit } from "react-icons/ci";
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
-import { useEffect, useState } from "react";
+import { DragEvent, useEffect, useState } from "react";
 import Confetti from "./Confetti/Confetti";
 
 interface Iprops {
@@ -68,9 +68,33 @@ function TodoData({ TodoList, setTodoList, setButtonType, setTask }: Iprops) {
 
   //edit Task
 
-  const OnEditHandler = (index:number) => {
+  const OnEditHandler = (index: number) => {
     setButtonType(true);
     setTask(TodoList[index]);
+  };
+
+  //Drag and Drop
+  const [draggedTask, setDraggedTask] = useState<ITask | null>(null);
+
+  const handleDragStart = (task: ITask) => {
+    setDraggedTask(task);
+  };
+
+  const handleDragOver = (e: DragEvent<HTMLUListElement>) => {
+    e.preventDefault();
+  };
+
+  const handleDrop = (index: number) => {
+    if (draggedTask) {
+      const updatedList = [...TodoList];
+      const draggedIndex = TodoList.findIndex(
+        (task) => task.id === draggedTask.id
+      );
+      updatedList.splice(draggedIndex, 1);
+      updatedList.splice(index, 0, draggedTask);
+      setTodoList(updatedList);
+      setDraggedTask(null);
+    }
   };
 
   return (
@@ -99,10 +123,14 @@ function TodoData({ TodoList, setTodoList, setButtonType, setTask }: Iprops) {
                   return (
                     <ul
                       key={Tasks.id}
+                      draggable={!completedTasks[Tasks.id]}
+                      onDragStart={() => handleDragStart(Tasks)}
+                      onDragOver={(e) => handleDragOver(e)}
+                      onDrop={() => handleDrop(index)}
                       className={
                         completedTasks[Tasks.id]
-                          ? "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full CompletedTasks before-line "
-                          : "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full "
+                          ? "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full CompletedTasks before-line cursor-move "
+                          : "flex justify-around text-center TodoList my-1 py-3 text-white font-semibold w-full cursor-move "
                       }
                     >
                       <li className="me-auto">{Tasks.YourTask}</li>
