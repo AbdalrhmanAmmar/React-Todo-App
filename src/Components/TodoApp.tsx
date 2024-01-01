@@ -12,6 +12,7 @@ interface Iprops {
   ButtonType: boolean;
   handleCancelEdit: MouseEventHandler<HTMLButtonElement>;
   YourDateIsEdited: MouseEventHandler<HTMLButtonElement>;
+  selectedTask: number | null;
 }
 
 function TodoApp({
@@ -21,6 +22,7 @@ function TodoApp({
   ButtonType,
   handleCancelEdit,
   YourDateIsEdited,
+
 }: Iprops) {
   const OnTaskhandler = (event: ChangeEvent<HTMLInputElement>) => {
     setTask({

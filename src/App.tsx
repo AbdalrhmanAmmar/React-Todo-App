@@ -46,17 +46,6 @@ function App() {
     setButtonType(false);
   };
 
-  // const YourDateIsEdited = () => {
-  //   if (selectedTask !== null && Task.YourTask.trim() !== "") {
-  //     const newDataList = [...TodoList];
-  //     newDataList[selectedTask] = { ...Task, id: TodoList[selectedTask].id };
-  //     setTodoList(newDataList);
-  //     setTask({ id: "", YourTask: "", Date: "", Time: "" });
-  //     setSelectedTask(null);
-  //     setButtonType(false);
-  //   }
-  // };
-
   const YourDateIsEdited = () => {
     if (selectedTask !== null && Task.YourTask.trim() !== "") {
       const newDataList = [...TodoList];
@@ -67,7 +56,6 @@ function App() {
     }
     setButtonType(false);
   };
-
   return (
     <div className="grid grid-cols-12 gap-6 px-5 xl:pr-40 my-14 sm:px-20 md:px-40px  flex-wrap-reverse border-none ">
       <div className="col-span-12 p-4 text-center  xl:col-span-4 md:col-span-12  rounded-2xl bg-white sidebar xl:order-2 xl:w-[120%]">
@@ -78,6 +66,7 @@ function App() {
           ButtonType={ButtonType}
           handleCancelEdit={handleCancelEdit}
           YourDateIsEdited={YourDateIsEdited}
+          selectedTask={selectedTask}
         />
       </div>
 
@@ -87,6 +76,7 @@ function App() {
           setTodoList={setTodoList}
           setButtonType={setButtonType}
           setTask={setTask}
+          setSelectedTask={setSelectedTask}
         />
       </div>
     </div>

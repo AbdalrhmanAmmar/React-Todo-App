@@ -14,9 +14,16 @@ interface Iprops {
   setTodoList: (TodoList: ITask[]) => void;
   setButtonType: (buttonType: boolean) => void;
   setTask: (task: ITask) => void;
+  setSelectedTask: (selectedTask: number | null) => void;
 }
 
-function TodoData({ TodoList, setTodoList, setButtonType, setTask }: Iprops) {
+function TodoData({
+  TodoList,
+  setTodoList,
+  setButtonType,
+  setTask,
+  setSelectedTask,
+}: Iprops) {
   //Delete Done
   const RemoveTask = (id: string) => {
     console.log(id);
@@ -71,6 +78,7 @@ function TodoData({ TodoList, setTodoList, setButtonType, setTask }: Iprops) {
   const OnEditHandler = (index: number) => {
     setButtonType(true);
     setTask(TodoList[index]);
+    setSelectedTask(index); // Add this line
   };
 
   //Drag and Drop
